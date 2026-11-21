@@ -41,7 +41,7 @@ fn print_top_pairs_from_file(args: &[String]) {
     let (max_pair, _) = counts
         .iter()
         .fold(None, |best, (pair, count)| match best {
-            Some((_, best_count)) if best_count <= count => best,
+            Some((_, best_count)) if best_count > count => best,
             _ => Some((pair, count)),
         })
         .expect("Could not determine at least one pair.");
