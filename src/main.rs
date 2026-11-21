@@ -38,10 +38,12 @@ fn print_top_pairs_from_file(args: &[String]) {
         *counts.entry((window[0], window[1])).or_insert(0) += 1;
     }
 
+    eprintln!("{:?}", counts);
+
     let (max_pair, _) = counts
         .iter()
         .fold(None, |best, (pair, count)| match best {
-            Some((_, best_count)) if best_count > count => best,
+            Some((_, best_count)) if best_count >= count => best,
             _ => Some((pair, count)),
         })
         .expect("Could not determine at least one pair.");
