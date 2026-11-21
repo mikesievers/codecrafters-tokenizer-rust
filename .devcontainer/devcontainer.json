@@ -1,0 +1,18 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/rust
+{
+	"name": "CodecraftersTokenizer",
+	"image": "mcr.microsoft.com/devcontainers/rust:2-1-trixie",
+
+	"onCreateCommand": "apt update && apt install -y telnet netcat-openbsd xxd &&  rustup default stable && rustup component add clippy rustfmt",
+	"postCreateCommand": "scripts/oncreate.sh",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"esbenp.prettier-vscode",
+				"Ollama.ollama"
+			]
+		}
+	},
+	"remoteUser": "root"
+}
