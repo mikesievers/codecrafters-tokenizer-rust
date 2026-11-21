@@ -1,0 +1,18 @@
+#[allow(unused_imports)]
+use std::env;
+#[allow(unused_imports)]
+use std::fs;
+
+fn main() {
+    // You can use print statements as follows for debugging, they'll be visible when running tests.
+    eprintln!("Logs from your program will appear here!");
+
+    // TODO: Uncomment the code below to pass the first stage
+    // let args: Vec<String> = env::args().collect();
+    // if args[1] == "bytes" {
+    //     let data: Vec<u8> = fs::read(&args[2]).unwrap();
+    //     println!("{}", serde_json::to_string(&data).unwrap());
+    // } else {
+    //     eprintln!("unknown command: {}", args[1]);
+    // }
+}
