@@ -1,11 +1,14 @@
 #![warn(clippy::pedantic)]
-use std::collections::HashMap;
+
+mod top_pair;
+
 use std::env;
 use std::fs;
 use std::fs::read_to_string;
 
-use indexmap::IndexMap;
 use itertools::Itertools;
+
+use crate::top_pair::print_top_pairs_from_file;
 
 fn main() {
     eprintln!("Starting tokenizer.");
@@ -34,26 +37,6 @@ fn main() {
 fn print_file_as_bytes(args: &[String]) {
     let data: Vec<u8> = fs::read(&args[2]).unwrap();
     println!("{}", serde_json::to_string(&data).unwrap());
-}
-
-fn print_top_pairs_from_file(args: &[String]) {
-    let file = read_to_string(&args[2]).unwrap();
-    let data: Vec<u32> = serde_json::from_str(&file).expect("Could not parse file to Vec<u32>");
-
-    let mut counts = IndexMap::new();
-    for window in data.windows(2) {
-        *counts.entry((window[0], window[1])).or_insert(0) += 1;
-    }
-
-    let (max_pair, _) = counts
-        .iter()
-        .fold(None, |best, (pair, count)| match best {
-            Some((_, best_count)) if best_count >= count => best,
-            _ => Some((pair, count)),
-        })
-        .expect("Could not determine at least one pair.");
-
-    println!("[{}, {}]", max_pair.0, max_pair.1);
 }
 
 fn merge_pair(args: &[String]) {
@@ -93,4 +76,12 @@ fn merge_pair(args: &[String]) {
     println!("{substituted_data:?}");
 }
 
-fn train(args: &[String]) {}
+fn train(args: &[String]) {
+    let file = read_to_string(&args[2]).unwrap();
+    let data: Vec<u32> = serde_json::from_str(&file).expect("Could not parse file to Vec<u32>");
+    assert_eq!(args.len(), 5);
+    assert_eq!(&args[3], "--num-merges");
+    let num_merges = args[4]
+        .parse::<usize>()
+        .expect("Could not parse number of iterations");
+}

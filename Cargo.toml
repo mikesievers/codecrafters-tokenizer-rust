@@ -15,3 +15,4 @@ thiserror = "1.0.38"                                   # error handling
 serde = { version = "1.0.229", features = ["derive"] }
 itertools = "0.15.0"
 indexmap = "2.14.2"
+rstest = "0.29.0"
