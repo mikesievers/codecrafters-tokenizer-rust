@@ -22,6 +22,9 @@ fn main() {
         "merge" => {
             merge_pair(&args);
         }
+        "train" => {
+            train(&args);
+        }
         _ => {
             eprintln!("unknown command: {}", args[1]);
         }
@@ -87,5 +90,7 @@ fn merge_pair(args: &[String]) {
         substituted_data.push(data[i]);
     }
 
-    println!("{:?}", substituted_data);
+    println!("{substituted_data:?}");
 }
+
+fn train(args: &[String]) {}
