@@ -1,13 +1,14 @@
 #![warn(clippy::pedantic)]
 
+mod bytes;
 mod top_pair;
 
 use std::env;
-use std::fs;
 use std::fs::read_to_string;
 
 use itertools::Itertools;
 
+use crate::bytes::print_file_as_bytes;
 use crate::top_pair::print_top_pairs_from_file;
 
 fn main() {
@@ -32,11 +33,6 @@ fn main() {
             eprintln!("unknown command: {}", args[1]);
         }
     }
-}
-
-fn print_file_as_bytes(args: &[String]) {
-    let data: Vec<u8> = fs::read(&args[2]).unwrap();
-    println!("{}", serde_json::to_string(&data).unwrap());
 }
 
 fn merge_pair(args: &[String]) {
