@@ -23,7 +23,7 @@ pub fn merge_pair_and_print_substituted_result(args: &[String]) {
     println!("{substituted_data:?}");
 }
 
-fn merge_pair(data: &[u32], pair: (u32, u32), token_id: u32) -> Vec<u32> {
+pub fn merge_pair(data: &[u32], pair: (u32, u32), token_id: u32) -> Vec<u32> {
     // Loop over the data and substitute a pair if found
     let mut substituted_data = Vec::with_capacity(data.len());
     let mut i = 0;

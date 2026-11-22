@@ -11,7 +11,7 @@ pub fn print_top_pairs_from_file(args: &[String]) {
     println!("[{}, {}]", max_pair.0, max_pair.1);
 }
 
-fn top_pair_from_bytes(data: &[u32]) -> (u32, u32) {
+pub fn top_pair_from_bytes(data: &[u32]) -> (u32, u32) {
     let mut counts = IndexMap::new();
     for window in data.windows(2) {
         *counts.entry((window[0], window[1])).or_insert(0) += 1;
