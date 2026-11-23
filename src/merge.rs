@@ -26,6 +26,11 @@ pub fn merge_pair_and_print_substituted_result(args: &[String]) {
 pub fn merge_pair(data: &[u32], pair: (u32, u32), token_id: u32) -> Vec<u32> {
     // Loop over the data and substitute a pair if found
     let mut substituted_data = Vec::with_capacity(data.len());
+
+    if data.is_empty() {
+        return substituted_data;
+    }
+
     let mut i = 0;
     while i < data.len() - 1 {
         if pair == (data[i], data[i + 1]) {

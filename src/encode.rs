@@ -49,4 +49,12 @@ mod tests {
 
         assert_eq!(encode(data, &merges), [258].to_vec());
     }
+
+    #[test]
+    fn test_encode_empty_string() {
+        let data = "";
+        let merges: Vec<(u32, u32)> = [(97, 97), (256, 97), (257, 98)].to_vec();
+
+        assert_eq!(encode(data, &merges), [].to_vec() as Vec<u32>);
+    }
 }
