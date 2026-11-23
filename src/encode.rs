@@ -17,11 +17,7 @@ pub fn encode_and_print_result(args: &[String]) -> Result<(), Box<dyn Error>> {
     let buf_reader = BufReader::new(merges_file);
     let merges: Vec<(u32, u32)> = serde_json::from_reader(buf_reader)?;
 
-    println!("{merges:?}");
-
     let encoded = encode(&data, &merges);
-
-    // let substituted_pairs = train(&data, num_merges);
 
     println!("{encoded:?}");
 
