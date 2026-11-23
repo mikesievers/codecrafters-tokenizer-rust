@@ -16,10 +16,7 @@ pub fn train_and_print_result(args: &[String]) {
 }
 
 fn train(data: &str, num_merges: u32) -> Vec<[u32; 2]> {
-    let mut bytes: Vec<u32> = bytes_from_string(data)
-        .into_iter()
-        .map(|b| b as u32)
-        .collect();
+    let mut bytes: Vec<u32> = bytes_from_string(data).into_iter().map(u32::from).collect();
 
     let mut substituted_pairs = Vec::with_capacity(num_merges as usize);
 
